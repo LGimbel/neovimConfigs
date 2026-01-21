@@ -45,9 +45,11 @@ local function set_keymaps()
     vim.keymap.set('n', '<leader>hl', function() hop.hint_lines_skip_whitespace() end, { desc = 'Hop to Line' })
     vim.keymap.set('n', '<leader>hc', function() hop.hint_char2() end, { desc = 'Hop to Character' })
     vim.keymap.set('n', '<leader>/', function() hop.hint_patterns() end, { desc = 'Hop to Pattern' })
-    vim.keymap.set('n', '<leader>f', function() hop.hint_char1({current_line_only = true}) end, { desc = 'Hop to Character' })
 
     vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true, noremap = true, desc = "Clear Search Highlight" })
+
+    -- Insert newline below without entering insert mode
+    vim.keymap.set('n', 'O', 'o<Esc>', { noremap = true, desc = 'Insert newline below without entering insert mode' })
 
 
     -- Load the VSCode API if running inside the extension
@@ -57,10 +59,10 @@ local function set_keymaps()
 
         -- Leader key mappings for VS Code commands
         vim.keymap.set('n', '<leader>p', function() vscode.action('workbench.action.quickOpen') end, { silent = true, desc = 'Quick Open' })
-        vim.keymap.set('n', '<leader>b', function() vscode.action('workbench.action.showAllEditors') end, { silent = true, desc = 'Show All Editors/Buffers' })
         vim.keymap.set('n', '<leader>t', function() vscode.action('workbench.action.terminal.toggleTerminal') end, { silent = true, desc = 'Toggle Terminal' })
         vim.keymap.set('n', '<leader>e', function() vscode.action('editor.action.marker.next') end, { silent = true, desc = 'Next Error/Marker' })
         vim.keymap.set('n', '<leader>g', function() vscode.action('editor.action.revealDefinition') end, { desc = 'Go to Definition' })
+        vim.keymap.set('n', '<leader>f', function() vscode.action('editor.action.formatDocument') end, { desc = 'Format Document' })
         vim.keymap.set('n', '<leader>hf', function() vscode.action('editor.action.formatDocument') end, { desc = 'Format Document' })
         vim.keymap.set('n', '<leader>l', function() vscode.action('workbench.action.toggleSidebarVisibility') end, { desc = 'Toggle Sidebar' })
         vim.keymap.set('n', '<leader>d', function() vscode.action('workbench.action.nextEditor') end, { desc = 'Next Tab' })

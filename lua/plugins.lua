@@ -46,11 +46,11 @@ return {
             enable = true,
             set_jumps = true,
             goto_next_start = {
-              ["]m"] = "@function.outer",
+              ["<leader>n"] = "@function.outer",
               ["]]"] = "@class.outer",
             },
             goto_previous_start = {
-              ["[m"] = "@function.outer",
+              ["<leader>b"] = "@function.outer",
               ["[["] = "@class.outer",
             },
           },
