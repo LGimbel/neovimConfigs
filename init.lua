@@ -36,16 +36,6 @@ local function set_keymaps()
 
     -- 'b' to '%' (Match parenthesis/brace)
     vim.keymap.set('n', 'b', '%', { remap = true, desc = 'Match parenthesis' })
-
-    -- hop bindings
-    local hop = require('hop')
-    local directions = require('hop.hint').HintDirection
-
-    vim.keymap.set('n', '<leader>hw', function() hop.hint_words() end, { desc = 'Hop to Word' })
-    vim.keymap.set('n', '<leader>hl', function() hop.hint_lines_skip_whitespace() end, { desc = 'Hop to Line' })
-    vim.keymap.set('n', '<leader>hc', function() hop.hint_char2() end, { desc = 'Hop to Character' })
-    vim.keymap.set('n', '<leader>/', function() hop.hint_patterns() end, { desc = 'Hop to Pattern' })
-
     vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true, noremap = true, desc = "Clear Search Highlight" })
 
     -- Insert newline below without entering insert mode
