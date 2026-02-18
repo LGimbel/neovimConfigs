@@ -35,10 +35,10 @@ local function set_keymaps()
     vim.keymap.set('n', 'lda', ':delm!<CR>', { noremap = true, desc = 'Delete All Marks' })
 
     -- 'b' to '%' (Match parenthesis/brace)
-    vim.keymap.set('n', 'b', '%', { remap = true, desc = 'Match parenthesis' })
+    vim.keymap.set({'n', 'v'}, 'b', '%', { remap = true, desc = 'Match parenthesis' })
     vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true, noremap = true, desc = "Clear Search Highlight" })
 
-    
+
  -- Insert newline below without entering insert mode
     vim.keymap.set('n', 'O', function()
       local count = vim.v.count1
@@ -48,7 +48,7 @@ local function set_keymaps()
         vim.fn.append(line, '')
       end
     vim.fn.cursor(line, col)
-  end) 
+  end)
 
     -- Load the VSCode API if running inside the extension
     local is_vscode = vim.g.vscode

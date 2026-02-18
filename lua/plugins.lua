@@ -7,7 +7,6 @@ return {{
             keys = 'etovxqpdygfblzhckisuran'
         })
 
-        -- Keymaps moved here
         vim.keymap.set('n', '<leader>hw', function()
             hop.hint_words()
         end, {
@@ -47,11 +46,10 @@ return {{
     event = 'VeryLazy'
 }, {
     'nvim-treesitter/nvim-treesitter',
-    branch = 'main', -- Use the rewrite branch
+    branch = 'master',
     build = ':TSUpdate',
     config = function()
-        -- Note: 'configs' (plural) is gone. Use 'config' (singular)
-        require('nvim-treesitter.config').setup({
+        require('nvim-treesitter.configs').setup({
             ensure_installed = {'go', 'lua', 'python', 'rust', 'html'},
             highlight = {
                 enable = true
@@ -60,30 +58,32 @@ return {{
     end
 }, {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    branch = 'main', -- Must also use the main branch for compatibility
+    branch = 'master',
     dependencies = {'nvim-treesitter/nvim-treesitter'},
     config = function()
-        require('nvim-treesitter-textobjects').setup({
-            select = {
-                enable = true,
-                lookahead = true,
-                keymaps = {
-                    ['af'] = '@function.outer',
-                    ['if'] = '@function.inner',
-                    ['ac'] = '@class.outer',
-                    ['ic'] = '@class.inner'
-                }
-            },
-            move = {
-                enable = true,
-                set_jumps = true,
-                goto_next_start = {
-                    ['<leader><Down>'] = '@function.outer',
-                    [']]'] = '@class.outer'
+        require('nvim-treesitter.configs').setup({
+            textobjects = {
+                select = {
+                    enable = true,
+                    lookahead = true,
+                    keymaps = {
+                        ['af'] = '@function.outer',
+                        ['if'] = '@function.inner',
+                        ['ac'] = '@class.outer',
+                        ['ic'] = '@class.inner'
+                    }
                 },
-                goto_previous_start = {
-                    ['<leader><Up>'] = '@function.outer',
-                    ['[['] = '@class.outer'
+                move = {
+                    enable = true,
+                    set_jumps = true,
+                    goto_next_start = {
+                        ['<leader><Down>'] = '@function.outer',
+                        [']]'] = '@class.outer'
+                    },
+                    goto_previous_start = {
+                        ['<leader><Up>'] = '@function.outer',
+                        ['[['] = '@class.outer'
+                    }
                 }
             }
         })
@@ -102,7 +102,6 @@ return {{
     event = 'VeryLazy',
     config = function()
         require('substitute').setup()
-        -- Keybindings for substitution
         vim.keymap.set('n', 's', require('substitute').operator, {
             noremap = true
         })
